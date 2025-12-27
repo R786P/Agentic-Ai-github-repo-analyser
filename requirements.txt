@@ -1,4 +1,4 @@
 flask
-langgraph
-tavily-python
-python-dotenv
+crewai
+tavily
+langchain
