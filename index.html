@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repo Analyser</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; background: #f9f9f9; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+        #result { background: white; padding: 15px; border-radius: 5px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h2>Agentic GitHub Repo Analyser</h2>
+    <input type="text" id="repoUrl" placeholder="Enter GitHub repo URL (e.g., https://github.com/username/repo)" />
+    <select id="analysisMode">
+        <option value="codebase_summary">Codebase Summary</option>
+        <option value="security_check">Security Check</option>
+        <option value="contributor_insights">Contributor Insights</option>
+    </select>
+    <button onclick="analyze()">Analyze</button>
+    <div id="result">Result will appear here...</div>
+
+    <script>
+        async function analyze() {
+            const repoUrl = document.getElementById('repoUrl').value;
+            const mode = document.getElementById('analysisMode').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "Analysing...";
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ repo_url: repoUrl, analysis_mode: mode })
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = data.result || data.error || "No result";
+            } catch (err) {
+                resultDiv.innerHTML = "Error: " + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
