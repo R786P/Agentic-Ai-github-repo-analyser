@@ -1,4 +1,6 @@
 flask
 crewai
-tavily
 langchain
+langchain-community
+tavily-python
+python-dotenv
