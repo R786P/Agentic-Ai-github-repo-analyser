@@ -1,0 +1,31 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Cache files
+__pycache__/
+
+# Data and models (if any)
+data/
+models/
+*.bin
+*.pt
+*.pth
+*.zip
+*.tar.gz
+
+# Git files
+.git/
+.gitignore
+
+# Logs and temp files
+*.log
+*.tmp
+*.lock
+
+# Node.js (if not using)
+node_modules/
+
+# Streamlit cache (if any)
+.streamlit/
