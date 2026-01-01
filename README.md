@@ -8,3 +8,4 @@ An AI agent that analyses GitHub repositories using LangGraph and Tavily.
 2. Set environment variable:  
    ```bash
    export TAVILY_API_KEY=your_tavily_api_key
+# redeploy test - 1 Jan 2026
