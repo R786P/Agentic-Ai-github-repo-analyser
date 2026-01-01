@@ -1,12 +1,11 @@
-from tavily import TavilyClient
-import os
+import streamlit as st
 
-# Initialize Tavily client
-tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+# Try to get from Streamlit secrets first
+try:
+    api_key = st.secrets["TAVILY_API_KEY"]
+except Exception:
+    # Fallback to env var (for local dev)
+    api_key = os.getenv("TAVILY_API_KEY")
 
-def tavily_search_tool(query: str) -> str:
-    try:
-        response = tavily.search(query=query, search_depth="basic")
-        return response.get("results", [{}])[0].get("content", "No relevant info found.")
-    except Exception as e:
-        return f"Search failed: {str(e)}"
+if not api_key:
+    raise ValueError("TAVILY_API_KEY not found in secrets or environment variables")
